@@ -64,9 +64,13 @@ export default {
     if (env.ASSETS) {
       const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(url.pathname);
       
-      // Se for uma rota sem extensão (ex: /BR301300008BR ou /rastreio/...), serve a home
+      // Se for uma rota sem extensão (ex: /BR301300008BR ou /rastreio/...), redireciona de forma limpa para ?codigo=...
       if (!isStaticFile && url.pathname !== '/') {
-        return env.ASSETS.fetch(new URL('/', request.url).toString());
+        const code = url.pathname.replace(/^\/?(rastreio\/)?/, '').replace(/\/+$/, '');
+        if (code) {
+          return Response.redirect(`${url.origin}/?codigo=${encodeURIComponent(code)}`, 302);
+        }
+        return Response.redirect(`${url.origin}/`, 302);
       }
 
       return env.ASSETS.fetch(request);
