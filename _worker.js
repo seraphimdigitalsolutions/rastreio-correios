@@ -62,15 +62,15 @@ export default {
 
     // Para qualquer outro arquivo (HTML, CSS, imagens, JS), serve a página estática / SPA
     if (env.ASSETS) {
-      const response = await env.ASSETS.fetch(request);
-      if (response.status === 404) {
-        const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(url.pathname);
-        if (!isStaticFile) {
-          const indexUrl = new URL('/index.html', request.url);
-          return env.ASSETS.fetch(new Request(indexUrl, request));
-        }
+      const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(url.pathname);
+      
+      // Se for uma rota sem extensão (ex: /BR301300008BR ou /rastreio/...), serve direto a home
+      if (!isStaticFile && url.pathname !== '/') {
+        const indexUrl = new URL('/', request.url);
+        return env.ASSETS.fetch(indexUrl);
       }
-      return response;
+
+      return env.ASSETS.fetch(request);
     }
 
     return new Response('Not found', { status: 404 });
