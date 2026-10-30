@@ -483,7 +483,6 @@ function render(d){
   box.innerHTML = '';
 
   const destCity = d.city || d.customerCity || 'Destino';
-  const destCep = d.cep ? `(CEP ${d.cep})` : '';
   const code = d.trackingCode || '';
   activeTrackingCode = code;
 
@@ -491,7 +490,7 @@ function render(d){
     <div style="padding: 16px 0 12px 0; border-bottom: 1px solid #e2e8f0; margin-bottom: 18px;">
       <p class="text text-head" style="color: #00416b; font-size: 1.15rem; font-weight: 800;">${code}</p>
       <p class="text text-content" style="color: #64748b; font-size: 0.92rem; margin-top: 2px;">
-        Destino: <strong>${destCity}</strong> ${destCep} • <strong>${d.status || 'Em trânsito'}</strong>
+        Destino: <strong>${destCity}</strong> • <strong>${d.status || 'Em trânsito'}</strong>
       </p>
     </div>
   `;
