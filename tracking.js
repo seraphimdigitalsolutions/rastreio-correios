@@ -1,5 +1,5 @@
-// Logistics Tracking Client (JetLogs)
-const API_BASE = (window.LOGISTICS_API_URL || window.CARRIER_API_URL || window.JETLOGS_API_URL || '').replace(/\/$/, '');
+// Correios - Rastreamento de Objetos
+const API_BASE = (window.TRACKING_API_URL || '').replace(/\/$/, '');
 const API = `${API_BASE}/api/tracking`;
 const ORIGIN = 'Cajamar/SP';
 

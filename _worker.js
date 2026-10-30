@@ -48,15 +48,16 @@ export default {
         body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : undefined,
       });
 
-      // Devolve a resposta com os headers da fachada (sem expor o backend)
-      const responseHeaders = new Headers(backendResponse.headers);
-      responseHeaders.set('Access-Control-Allow-Origin', '*');
-      responseHeaders.delete('server');
-      responseHeaders.delete('x-powered-by');
+      // Devolve a resposta com cabeçalhos 100% limpos e ofuscados (elimina qualquer rastro de Render, host ou backend)
+      const cleanHeaders = new Headers();
+      cleanHeaders.set('Content-Type', backendResponse.headers.get('content-type') || 'application/json; charset=utf-8');
+      cleanHeaders.set('Access-Control-Allow-Origin', '*');
+      cleanHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      cleanHeaders.set('X-Content-Type-Options', 'nosniff');
 
       return new Response(backendResponse.body, {
         status: backendResponse.status,
-        headers: responseHeaders,
+        headers: cleanHeaders,
       });
     }
 
