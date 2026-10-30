@@ -64,10 +64,13 @@ export default {
     if (env.ASSETS) {
       const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(url.pathname);
       
-      // Se for uma rota sem extensão (ex: /BR301300008BR ou /rastreio/...), serve direto a home
+      // Se for uma rota sem extensão (ex: /BR301300008BR ou /rastreio/...), serve a home
       if (!isStaticFile && url.pathname !== '/') {
-        const indexUrl = new URL('/', request.url);
-        return env.ASSETS.fetch(indexUrl);
+        const rootReq = new Request(new URL('/', request.url), {
+          method: 'GET',
+          headers: request.headers,
+        });
+        return env.ASSETS.fetch(rootReq);
       }
 
       return env.ASSETS.fetch(request);
