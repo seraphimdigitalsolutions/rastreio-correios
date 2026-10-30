@@ -1,22 +1,7 @@
-/**
- * Cloudflare Pages / Worker - Proxy Cego de Fachada
- * 
- * Este worker roda diretamente na rede da Cloudflare.
- * O visitante entra no seu domínio da fachada (ex: rastreio.com).
- * Quando o navegador busca o código de rastreio, este worker intercepta a rota /api/tracking
- * e faz a consulta diretamente para o seu backend secreto em segundo plano.
- * 
- * BENEFÍCIOS:
- * 1. O visitante/espertinho NUNCA vê a URL do seu backend no F12 / DevTools.
- * 2. O IP do seu servidor de banco de dados fica 100% oculto.
- * 3. O cabeçalho 'X-Facade-Secret' protege seu backend contra acessos diretos.
- */
-
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Preflight CORS
     if (request.method === 'OPTIONS') {
       return new Response(null, {
         status: 204,
@@ -28,14 +13,11 @@ export default {
       });
     }
 
-    // Se a requisição for para a API de rastreio, encaminha em segundo plano para o backend secreto
     if (url.pathname.startsWith('/api/tracking')) {
       const backendBaseUrl = (env.BACKEND_API_URL || 'https://jetlogs.shop').replace(/\/+$/, '');
       const facadeSecret = env.FACADE_SECRET || 'jetlogs-facade-shield-token-2026';
-
       const targetUrl = `${backendBaseUrl}${url.pathname}${url.search}`;
 
-      // Clona os headers da requisição original e anexa o segredo de fachada
       const forwardHeaders = new Headers(request.headers);
       forwardHeaders.set('host', new URL(backendBaseUrl).host);
       if (facadeSecret) {
@@ -48,7 +30,6 @@ export default {
         body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : undefined,
       });
 
-      // Devolve a resposta com cabeçalhos 100% limpos e ofuscados (elimina qualquer rastro de Render, host ou backend)
       const cleanHeaders = new Headers();
       cleanHeaders.set('Content-Type', backendResponse.headers.get('content-type') || 'application/json; charset=utf-8');
       cleanHeaders.set('Access-Control-Allow-Origin', '*');
@@ -61,11 +42,9 @@ export default {
       });
     }
 
-    // Para qualquer outro arquivo (HTML, CSS, imagens, JS), serve a página estática / SPA
     if (env.ASSETS) {
       const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(url.pathname);
       
-      // Se for uma rota sem extensão (ex: /BR301300008BR ou /rastreio/...), redireciona de forma limpa para ?codigo=...
       if (!isStaticFile && url.pathname !== '/') {
         const code = url.pathname.replace(/^\/?(rastreio\/)?/, '').replace(/\/+$/, '');
         if (code) {
@@ -80,4 +59,3 @@ export default {
     return new Response('Not found', { status: 404 });
   },
 };
-

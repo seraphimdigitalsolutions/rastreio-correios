@@ -1,7 +1,4 @@
 <?php
-/**
- * PHP Reverse Proxy - Fachada Cega de Rastreio (para cPanel / Apache / Hostinger / VPS)
- */
 $backendBaseUrl = getenv('BACKEND_API_URL') ?: 'https://jetlogs.shop';
 $facadeSecret   = getenv('FACADE_SECRET') ?: 'jetlogs-facade-shield-token-2026';
 
@@ -33,4 +30,3 @@ header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 echo $response;
 exit;
-

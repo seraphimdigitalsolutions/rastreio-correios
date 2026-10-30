@@ -1,12 +1,6 @@
 const https = require('https');
 const http = require('http');
 
-/**
- * Vercel Serverless Function - Proxy Cego de Fachada
- * 
- * Intercepta qualquer chamada a /api/tracking/* e repassa para a API secreta do backend.
- * O navegador do visitante só enxerga a URL da sua fachada Vercel!
- */
 module.exports = async (req, res) => {
   const backendBaseUrl = (process.env.BACKEND_API_URL || 'https://jetlogs.shop').replace(/\/+$/, '');
   const facadeSecret = process.env.FACADE_SECRET || 'jetlogs-facade-shield-token-2026';
@@ -33,8 +27,7 @@ module.exports = async (req, res) => {
     proxyRes.pipe(res, { end: true });
   });
 
-  proxyReq.on('error', (err) => {
-    console.error('[Proxy Error]', err.message);
+  proxyReq.on('error', () => {
     res.status(502).json({ error: 'Falha na conexão com a central de rastreamento.' });
   });
 
@@ -45,4 +38,3 @@ module.exports = async (req, res) => {
 
   req.pipe(proxyReq, { end: true });
 };
-

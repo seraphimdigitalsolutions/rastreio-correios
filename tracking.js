@@ -1,28 +1,18 @@
-// Correios - Rastreamento de Objetos
 const API_BASE = (window.TRACKING_API_URL || '').replace(/\/$/, '');
 const API = `${API_BASE}/api/tracking`;
 const ORIGIN = 'Cajamar/SP';
 
-// Official Correios SVG Icons (Base64 data URIs)
 const ICONS = {
-  // Checkmark / Delivered
   check: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQyIDI5Ljc4NTRWMTYuMjM2MUM0MiAxNS40Nzg1IDQxLjU3MiAxNC43ODYgNDAuODk0NCAxNC40NDcyTDI0Ljg5NDQgNi40NDcyMUMyNC4zMzE0IDYuMTY1NjkgMjMuNjY4NiA2LjE2NTY5IDIzLjEwNTYgNi40NDcyMUw3LjEwNTU3IDE0LjQ0NzJDNi40MjggMTQuNzg2IDYgMTUuNDc4NSA2IDE2LjIzNjFWMzEuNzYzOUM2IDMyLjUyMTUgNi40MjggMzMuMjE0IDcuMTA1NTcgMzMuNTUyOEwyMy4xMTU4IDQxLjU1NzlDMjMuNjczMSA0MS44MzY1IDI0LjMyODQgNDEuODM5NSAyNC44ODgyIDQxLjU2NkwyOS44NTI4IDM5LjE0MDIiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cGF0aCBkPSJNMjQgNDJWMjQuNDVNMjQgMjQuNDVMNiAxNU0yNCAyNC40NUw0MiAxNSIgc3Ryb2tlPSIjM0YzRTNCIi8+CjxwYXRoIGQ9Ik0xMyAxMS43MjczTDMwLjY5MjMgMjAuODE4MlYyNy4zNjE5QzMwLjY5MjMgMjguMTEwMSAzMS40ODM5IDI4LjU5MzMgMzIuMTQ5MyAyOC4yNTEzTDM0LjkxNDEgMjYuODMwN0MzNS41ODA4IDI2LjQ4ODEgMzYgMjUuODAxNCAzNiAyNS4wNTE4VjE4LjA5MDlMMTguMzA3NyA5IiBzdHJva2U9IiMzRjNFM0IiLz4KPHBhdGggZD0iTTkgMzAuMzgyVjI2LjgwOUM5IDI2LjQzNzMgOS4zOTExNiAyNi4xOTU2IDkuNzIzNjEgMjYuMzYxOEwxMy40NDcyIDI4LjIyMzZDMTMuNzg2IDI4LjM5MyAxNCAyOC43MzkzIDE0IDI5LjExOFYzMi42OTFDMTQgMzMuMDYyNyAxMy42MDg4IDMzLjMwNDQgMTMuMjc2NCAzMy4xMzgyTDkuNTUyNzkgMzEuMjc2NEM5LjIxNCAzMS4xMDcgOSAzMC43NjA3IDkgMzAuMzgyWiIgc3Ryb2tlPSIjM0YzRTNCIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTMyLjcxNzcgMzcuNTg5NUwzMy4wNzEyIDM3Ljk0M0wzMy40MjQ4IDM3LjU4OTVMNDAuOTM1MiAzMC4wNzlDNDEuNTIxIDI5LjQ5MzMgNDIuNDcwNyAyOS40OTMzIDQzLjA1NjUgMzAuMDc5QzQzLjY0MjMgMzAuNjY0OCA0My42NDIzIDMxLjYxNDYgNDMuMDU2NSAzMi4yMDA0TDMzLjQyNDggNDEuODMyMUMzMy4yMjk1IDQyLjAyNzQgMzIuOTEyOSA0Mi4wMjc0IDMyLjcxNzcgNDEuODMyMUwyOC4wMzE0IDM3LjE0NTlDMjcuNDQ1NiAzNi41NjAxIDI3LjQ0NTYgMzUuNjEwNCAyOC4wMzE0IDM1LjAyNDZDMjguNjE3MiAzNC40Mzg4IDI5LjU2NjkgMzQuNDM4OCAzMC4xNTI3IDM1LjAyNDZMMzIuNzE3NyAzNy41ODk1WiIgc3Ryb2tlPSIjM0YzRTNCIi8+Cjwvc3ZnPgo=',
-  // Truck / Transit
   truck: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMyLjUgMzZIMjhIMjlDMzAuMTA0NiAzNiAzMSAzNS4xMDQ2IDMxIDM0VjE2SDM4LjQxNDZDMzguODEwOCAxNiAzOS4xOTkxIDE2LjEwNjEgMzkuNTM2MiAxNi4zMDYzQzM5Ljg3MzIgMTYuNTA2NiA0MC4xNDU3IDE2Ljc5MzEgNDAuMzIyOSAxNy4xMzM4TDQzLjc3NDUgMjMuNzcxOUM0My45MjI4IDI0LjA1NjcgNDQuMDAwMSAyNC4zNzA5IDQ0IDI0LjY4OTRWMjhNMzkuNSAzNkg0MS44NjY3QzQyLjQzMjUgMzYgNDIuOTc1MSAzNS43ODM5IDQzLjM3NTIgMzUuMzk5MkM0My43NzUyIDM1LjAxNDUgNDQgMzQuNDkyOCA0NCAzMy45NDg3VjMyIiBzdHJva2U9IiMzRjNFM0IiLz4KPHBhdGggZD0iTTE1LjUgMzZIMjkuMDM2NEMyOS41NTcyIDM2IDMwLjA1NjYgMzUuNzg1NSAzMC40MjQ5IDM1LjQwMzZDMzAuNzkzMSAzNS4wMjE3IDMxIDM0LjUwMzcgMzEgMzMuOTYzNlYxMC4wMzY0QzMxIDkuNDk2MjkgMzAuNzkzMSA4Ljk3ODMzIDMwLjQyNDkgOC41OTY0NEMzMC4wNTY2IDguMjE0NTUgMjkuNTU3MiA4IDI5LjAzNjQgOEg1Ljk2MzY0QzUuNDQyODUgOCA0Ljk0MzM5IDguMjE0NTUgNC41NzUxNCA4LjU5NjQ0QzQuMjA2ODggOC45NzgzMyA0IDkuNDk2MjkgNCAxMC4wMzY0VjI4TTguNSAzNkg1Ljk2MzY0QzUuNDQyODUgMzYgNC45NDMzOSAzNS43ODU1IDQuNTc1MTQgMzUuNDAzNkM0LjIwNjg4IDM1LjAyMTcgNCAzNC41MDM3IDQgMzMuOTYzNlYzMiIgc3Ryb2tlPSIjM0YzRTNCIi8+CjxwYXRoIGQ9Ik0zOC4zODE4IDE4LjVMMzguMzgyIDE4LjVDMzguNDc0OCAxOC41IDM4LjU2NTggMTguNTI1OCAzOC42NDQ4IDE4LjU3NDdDMzguNzIzNyAxOC42MjM1IDM4Ljc4NzUgMTguNjkzNCAzOC44Mjg5IDE4Ljc3NjRMMzguODI5MSAxOC43NzY4TDQwLjgyOTEgMjIuNzc2OEw0MC44MjkyIDIyLjc3NjlDNDAuODY3MyAyMi44NTMgNDAuODg1MyAyMi45Mzc3IDQwLjg4MTQgMjMuMDIyOEM0MC44Nzc2IDIzLjEwNzkgNDAuODUyMSAyMy4xOTA2IDQwLjgwNzMgMjMuMjYzMUM0MC43NjI1IDIzLjMzNTYgNDAuNjk5OSAyMy4zOTU0IDQwLjYyNTUgMjMuNDM2OEM0MC41NTEgMjMuNDc4MyA0MC40NjczIDIzLjUgNDAuMzgyMSAyMy41SDQwLjM4MThIMzQuNUMzNC4zNjc0IDIzLjUgMzQuMjQwMiAyMy40NDczIDM0LjE0NjQgMjMuMzUzNkMzNC4wNTI3IDIzLjI1OTggMzQgMjMuMTMyNiAzNCAyM1YxOUMzNCAxOC44Njc0IDM0LjA1MjcgMTguNzQwMiAzNC4xNDY0IDE4LjY0NjRDMzQuMjQwMiAxOC41NTI3IDM0LjM2NzQgMTguNSAzNC41IDE4LjVIMzguMzgxOFoiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTM3IDM2QzM3IDM1LjgwMjIgMzYuOTQxNCAzNS42MDg5IDM2LjgzMTUgMzUuNDQ0NEMzNi43MjE2IDM1LjI4IDM2LjU2NTQgMzUuMTUxOCAzNi4zODI3IDM1LjA3NjFDMzYuMiAzNS4wMDA0IDM1Ljk5ODkgMzQuOTgwNiAzNS44MDQ5IDM1LjAxOTJDMzUuNjEwOSAzNS4wNTc4IDM1LjQzMjcgMzUuMTUzIDM1LjI5MjkgMzUuMjkyOUMzNS4xNTMgMzUuNDMyNyAzNS4wNTc4IDM1LjYxMDkgMzUuMDE5MiAzNS44MDQ5QzM0Ljk4MDYgMzUuOTk4OSAzNS4wMDA0IDM2LjIgMzUuMDc2MSAzNi4zODI3QzM1LjE1MTggMzYuNTY1NCAzNS4yOCAzNi43MjE2IDM1LjQ0NDQgMzYuODMxNUMzNS42MDg5IDM2Ljk0MTQgMzUuODAyMiAzNyAzNiAzN0MzNi4yNjUyIDM3IDM2LjUxOTYgMzYuODk0NiAzNi43MDcxIDM2LjcwNzFDMzYuODk0NiAzNi41MTk2IDM3IDM2LjI2NTIgMzcgMzZaIiBzdHJva2U9IiMzRjNFM0IiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMyAzNkMxMyAzNS44MDIyIDEyLjk0MTQgMzUuNjA4OSAxMi44MzE1IDM1LjQ0NDRDMTIuNzIxNiAzNS4yOCAxMi41NjU0IDM1LjE1MTggMTIuMzgyNyAzNS4wNzYxQzEyLjIgMzUuMDAwNCAxMS45OTg5IDM0Ljk4MDYgMTEuODA0OSAzNS4wMTkyQzExLjYxMDkgMzUuMDU3OCAxMS40MzI3IDM1LjE1MyAxMS4yOTI5IDM1LjI5MjlDMTEuMTUzIDM1LjQzMjcgMTEuMDU3OCAzNS42MTA5IDExLjAxOTIgMzUuODA0OUMxMC45ODA2IDM1Ljk5ODkgMTEuMDAwNCAzNi4yIDExLjA3NjEgMzYuMzgyN0MxMS4xNTE4IDM2LjU2NTQgMTEuMjggMzYuNzIxNiAxMS40NDQ0IDM2LjgzMTVDMTEuNjA4OSAzNi45NDE0IDExLjgwMjIgMzcgMTIgMzdDMTIuMjY1MiAzNyAxMi41MTk2IDM2Ljg5NDYgMTIuNzA3MSAzNi43MDcxQzEyLjg5NDYgMzYuNTE5NiAxMyAzNi4yNjUyIDEzIDM2WiIgc3Ryb2tlPSIjM0YzRTNCIi8+CjxwYXRoIGQ9Ik02IDMySDRDMy40NDc3MiAzMiAzIDMxLjU1MjMgMyAzMUwzIDI5QzMgMjguNDQ3NyAzLjQ0NzcyIDI4IDQgMjhINkM2LjU1MjI4IDI4IDcgMjguNDQ3NyA3IDI5TDcgMzFDNyAzMS41NTIzIDYuNTUyMjggMzIgNiAzMloiIHN0cm9rZT0iIzNGM0UzQiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik00NCAzMkg0MkM0MS40NDc3IDMyIDQxIDMxLjU1MjMgNDEgMzFWMjlDNDEgMjguNDQ3NyA0MS40NDc3IDI4IDQyIDI4SDQ0QzQ0LjU1MjMgMjggNDUgMjguNDQ3NyA0NSAyOVYzMUM0NSAzMS41NTIzIDQ0LjU1MjMgMzIgNDQgMzJaIiBzdHJva2U9IiMzRjNFM0IiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTEgMjNMMyAyMyIgc3Ryb2tlPSIjM0YzRTNCIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTEzIDE1TDMgMTUiIHN0cm9rZT0iIzNGM0UzQiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0xOCAxNUgxNiIgc3Ryb2tlPSIjM0YzRTNCIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTE2IDIzSDE0IiBzdHJva2U9IiMzRjNFM0IiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTYgMTlMNyAxOSIgc3Ryb2tlPSIjM0YzRTNCIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTQgMTlIMiIgc3Ryb2tlPSIjM0YzRTNCIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGNpcmNsZSBjeD0iMTIiIGN5PSIzNiIgcj0iNCIgc3Ryb2tlPSIjM0YzRTNCIi8+CjxjaXJjbGUgY3g9IjM2IiBjeT0iMzYiIHI9IjQiIHN0cm9rZT0iIzNGM0UzQiIvPgo8L3N2Zz4K',
-  // Box / Origin Postado
   box: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQyIDI5Ljc4NTRWMTYuMjM2MUM0MiAxNS40Nzg1IDQxLjU3MiAxNC43ODYgNDAuODk0NCAxNC40NDcyTDI0Ljg5NDQgNi40NDcyMUMyNC4zMzE0IDYuMTY1NjkgMjMuNjY4NiA2LjE2NTY5IDIzLjEwNTYgNi40NDcyMUw3LjEwNTU3IDE0LjQ0NzJDNi40MjggMTQuNzg2IDYgMTUuNDc4NSA2IDE2LjIzNjFWMzEuNzYzOUM2IDMyLjUyMTUgNi40MjggMzMuMjE0IDcuMTA1NTcgMzMuNTUyOEwyMy4xMTU4IDQxLjU1NzlDMjMuNjczMSA0MS44MzY1IDI0LjMyODQgNDEuODM5NSAyNC44ODgyIDQxLjU2NkwyOS44NTI4IDM5LjE0MDIiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cGF0aCBkPSJNMjQgNDJWMjQuNDVNMjQgMjQuNDVMNiAxNU0yNCAyNC40NUw0MiAxNSIgc3Ryb2tlPSIjM0YzRTNCIi8+CjxwYXRoIGQ9Ik0xMyAxMS43MjczTDMwLjY5MjMgMjAuODE4MlYyNy4zNjE5QzMwLjY5MjMgMjguMTEwMSAzMS40ODM5IDI4LjU5MzMgMzIuMTQ5MyAyOC4yNTEzTDM0LjkxNDEgMjYuODMwN0MzNS41ODA4IDI2LjQ4ODEgMzYgMjUuODAxNCAzNiAyNS4wNTE4VjE4LjA5MDlMMTguMzA3NyA5IiBzdHJva2U9IiMzRjNFM0IiLz4KPHBhdGggZD0iTTkgMzAuMzgyVjI2LjgwOUM5IDI2LjQzNzMgOS4zOTExNiAyNi4xOTU2IDkuNzIzNjEgMjYuMzYxOEwxMy40NDcyIDI4LjIyMzZDMTMuNzg2IDI4LjM5MyAxNCAyOC43MzkzIDE0IDI5LjExOFYzMi42OTFDMTQgMzMuMDYyNyAxMy42MDg4IDMzLjMwNDQgMTMuMjc2NCAzMy4xMzgyTDkuNTUyNzkgMzEuMjc2NEM5LjIxNCAzMS4xMDcgOSAzMC43NjA3IDkgMzAuMzgyWiIgc3Ryb2tlPSIjM0YzRTNCIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTMyLjcxNzcgMzcuNTg5NUwzMy4wNzEyIDM3Ljk0M0wzMy40MjQ4IDM3LjU4OTVMNDAuOTM1MiAzMC4wNzlDNDEuNTIxIDI5LjQ5MzMgNDIuNDcwNyAyOS40OTMzIDQzLjA1NjUgMzAuMDc5QzQzLjY0MjMgMzAuNjY0OCA0My42NDIzIDMxLjYxNDYgNDMuMDU2NSAzMi4yMDA0TDMzLjQyNDggNDEuODMyMUMzMy4yMjk1IDQyLjAyNzQgMzIuOTEyOSA0Mi4wMjc0IDMyLjcxNzcgNDEuODMyMUwyOC4wMzE0IDM3LjE0NTlDMjcuNDQ1NiAzNi41NjAxIDI3LjQ0NTYgMzUuNjEwNCAyOC4wMzE0IDM1LjAyNDZDMjguNjE3MiAzNC40Mzg4IDI5LjU2NjkgMzQuNDM4OCAzMC4xNTI3IDM1LjAyNDZMMzIuNzE3NyAzNy41ODk1WiIgc3Ryb2tlPSIjM0YzRTNCIi8+Cjwvc3ZnPgo=',
-  // Flag / Received in Brazil
   flag: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iNC41IiB5PSI2LjUiIHdpZHRoPSIzIiBoZWlnaHQ9IjM1IiByeD0iMS41IiBzdHJva2U9IiMzRjNFM0IiLz4KPHBhdGggZD0iTTcuNSAzMi44MzY3VjguMTkyNDlDOS4wOTU3NiA2LjQ4NDE5IDExLjUzMDQgNi4wMDkgMTQuNTU0MyA2LjI0ODUxQzE3LjY1MzIgNi40OTM5OCAyMS4yMjg0IDcuNDc4MzEgMjQuODY3IDguNDgyMDdMMjQuODk5OCA4LjQ5MTExQzI4LjUwMDYgOS40ODQ0NCAzMi4xNjI5IDEwLjQ5NDcgMzUuMzY2OCAxMC43NDg1QzM4LjExNzUgMTAuOTY2NCA0MC42MzU0IDEwLjYzNTMgNDIuNSA5LjE2MzQ1VjMzLjgwNzdDNDAuOTA0MiAzNS41MTYgMzguNDY5NiAzNS45OTExIDM1LjQ0NTcgMzUuNzUxNkMzMi4zNDY4IDM1LjUwNjIgMjguNzcxNiAzNC41MjE4IDI1LjEzMyAzMy41MTgxTDI1LjEwMDIgMzMuNTA5QzIxLjQ5OTQgMzIuNTE1NyAxNy44MzcxIDMxLjUwNTQgMTQuNjMzMiAzMS4yNTE2QzExLjg4MjUgMzEuMDMzNyA5LjM2NDYyIDMxLjM2NDkgNy41IDMyLjgzNjdaIiBzdHJva2U9IiMzRjNFM0IiLz4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyMSIgcj0iNS41IiB0cmFuc2Zvcm09InJvdGF0ZSg1LjE4Njk1IDI1IDIxKSIgc3Ryb2tlPSIjM0YzRTNCIi8+CjxwYXRoIGQ9Ik0xMS45MTQgMTkuODEyMkwyNS44NDg1IDExLjY1M0wzOC4wODYgMjIuMTg4TDI0LjE1MTUgMzAuMzQ3MkwxMS45MTQgMTkuODEyMloiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cGF0aCBkPSJNMjkuNDA0NSAyMy4xODQ1QzI5LjUzNjMgMjMuNDI3MiAyOS44Mzk4IDIzLjUxNzEgMzAuMDgyNSAyMy4zODUzQzMwLjMyNTIgMjMuMjUzNiAzMC40MTUxIDIyLjk1IDMwLjI4MzMgMjIuNzA3M0wyOS40MDQ1IDIzLjE4NDVaTTE5Ljc3MjcgMTkuNDk1N0MyMS4yNzEyIDE5LjE0MjkgMjMuMDgyMSAxOC45NTUyIDI0LjgxMSAxOS40MDcxQzI2LjUxOTUgMTkuODUzNyAyOC4xODE1IDIwLjkzMjQgMjkuNDA0NSAyMy4xODQ1TDMwLjI4MzMgMjIuNzA3M0MyOC45MjU0IDIwLjIwNjcgMjcuMDMzNiAxOC45NTQ1IDI1LjA2MzkgMTguNDM5N0MyMy4xMTQ4IDE3LjkzMDEgMjEuMTIzMiAxOC4xNTA0IDE5LjU0MzUgMTguNTIyM0wxOS43NzI3IDE5LjQ5NTdaIiBmaWxsPSIjM0YzRTNCIi8+Cjwvc3ZnPgo=',
-  // Document Send / Electronic customs notice
   document_send: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTM1IDI5TDM5LjQwNjkgMzQuMjA4MUM0MC4wMzc4IDM0Ljk1MzggNDAuMDM3OCAzNi4wNDYyIDM5LjQwNjkgMzYuNzkxOUwzNSA0MlYzOEgyNlYzM0gzNVYyOVoiIHN0cm9rZT0iIzNGM0UzQiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMzEuOTc0IDMzVjEwLjkyMzFMMjUuMTI0MyA0SDkuNzEyNDRDOS4yNTgyOCA0IDguODIyNzEgNC4xOTQ1IDguNTAxNTcgNC41NDA3M0M4LjE4MDQzIDQuODg2OTUgOC4wMDAwMiA1LjM1NjUyIDguMDAwMDIgNS44NDYxNUw4LjAyNjA3IDQwLjE1MzhDOC4wMjYwNyA0MC42NDM1IDguMjA2NDkgNDEuMTEzMSA4LjUyNzYzIDQxLjQ1OTNDOC44NDg3NyA0MS44MDU1IDkuMjg0MzMgNDIgOS43Mzg1IDQySDMwLjI4NzZDMzAuNzQxOCA0MiAzMS4xNzczIDQxLjgwNTUgMzEuNDk4NSA0MS40NTkzQzMxLjgxOTYgNDEuMTEzMSAzMiA0MC42NDM1IDMyIDQwLjE1MzhWMzgiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cGF0aCBkPSJNMjUgNFY5QzI1IDEwLjEwNDYgMjUuODk1NCAxMSAyNyAxMUgzMiIgc3Ryb2tlPSIjM0YzRTNCIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHJlY3QgeD0iMTEuNSIgeT0iMTQuNSIgd2lkdGg9IjE3IiBoZWlnaHQ9IjIiIHJ4PSIxIiBzdHJva2U9IiMzRjNFM0IiLz4KPHJlY3QgeD0iMTEuNSIgeT0iMTkuNSIgd2lkdGg9IjE3IiBoZWlnaHQ9IjIiIHJ4PSIxIiBzdHJva2U9IiMzRjNFM0IiLz4KPHJlY3QgeD0iMTEuNSIgeT0iMjQuNSIgd2lkdGg9IjE3IiBoZWlnaHQ9IjIiIHJ4PSIxIiBzdHJva2U9IiMzRjNFM0IiLz4KPHJlY3QgeD0iMTEuNSIgeT0iMjkuNSIgd2lkdGg9IjEzIiBoZWlnaHQ9IjIiIHJ4PSIxIiBzdHJva2U9IiMzRjNFM0IiLz4KPHJlY3QgeD0iMTEuNSIgeT0iMzQuNSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIiIHJ4PSIxIiBzdHJva2U9IiMzRjNFM0IiLz4KPC9zdmc+Cg==',
-  // Document Check / Customs cleared & fee confirmed
   document_check: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI5IDQySDkuNzM4NDlDOS4yODQzMyA0MiA4Ljg0ODc3IDQxLjgwNTUgOC41Mjc2MyA0MS40NTkzQzguMjA2NDkgNDEuMTEzMSA4LjAyNjA3IDQwLjY0MzUgOC4wMjYwNyA0MC4xNTM4TDguMDAwMDEgNS44NDYxNUM4LjAwMDAxIDUuMzU2NTIgOC4xODA0MyA0Ljg4Njk1IDguNTAxNTcgNC41NDA3M0M4LjgyMjcxIDQuMTk0NSA5LjI1ODI3IDQgOS43MTI0NCA0SDI1LjEyNDNMMzEuOTc0IDEwLjkyMzFWMzguNSIgc3Ryb2tlPSIjM0YzRTNCIi8+CjxwYXRoIGQ9Ik0yNSA0VjlDMjUgMTAuMTA0NiAyNS44OTU0IDExIDI3IDExSDMyIiBzdHJva2U9IiMzRjNFM0IiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cmVjdCB4PSIxMS41IiB5PSIxNC41IiB3aWR0aD0iMTciIGhlaWdodD0iMiIgcng9IjEiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cmVjdCB4PSIxMS41IiB5PSIxOS41IiB3aWR0aD0iMTciIGhlaWdodD0iMiIgcng9IjEiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cmVjdCB4PSIxMS41IiB5PSIyNC41IiB3aWR0aD0iMTciIGhlaWdodD0iMiIgcng9IjEiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cmVjdCB4PSIxMS41IiB5PSIyOS41IiB3aWR0aD0iMTciIGhlaWdodD0iMiIgcng9IjEiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cmVjdCB4PSIxMS41IiB5PSIzNC41IiB3aWR0aD0iMTAiIGhlaWdodD0iMiIgcng9IjEiIHN0cm9rZT0iIzNGM0UzQiIvPgo8cGF0aCBkPSJNMzAuNDU0IDM5LjI3ODJMMzAuODA3NiAzOS42MzE4TDMxLjE2MTEgMzkuMjc4MkwzOC42NzE2IDMxLjc2NzhDMzkuMjU3MyAzMS4xODIgNDAuMjA3MSAzMS4xODIgNDAuNzkyOSAzMS43Njc4QzQxLjM3ODcgMzIuMzUzNiA0MS4zNzg3IDMzLjMwMzMgNDAuNzkyOSAzMy44ODkxTDMxLjE2MTEgNDMuNTIwOEMzMC45NjU5IDQzLjcxNjEgMzAuNjQ5MyA0My43MTYxIDMwLjQ1NCA0My41MjA4TDI1Ljc2NzggMzguODM0NkMyNS4xODIgMzguMjQ4OCAyNS4xODIgMzcuMjk5MSAyNS43Njc4IDM2LjcxMzNDMjYuMzUzNiAzNi4xMjc1IDI3LjMwMzMgMzYuMTI3NSAyNy44ODkxIDM2LjcxMzNMMzAuNDU0IDM5LjI3ODJaIiBzdHJva2U9IiMzRjNFM0IiLz4KPC9zdmc+Cg==',
-  // Correios Ribbon Logo for customs/brand steps
   correios: '/correios-icon.png',
   document_alert: '/correios-icon.png'
 };
 
-// Inject timeline CSS styles matching result-template.html
 const CSS = `
 .ship-steps { list-style: none; margin: 0; padding: 0; border-left: none !important; margin-left: 20px; }
 .ship-steps .step { display: flex; padding-bottom: 0px; position: relative; }
@@ -59,9 +49,7 @@ const CSS = `
 }
 .step-alert-box { background: #fff3cd; border-left: 3px solid #ffc107; padding: 6px 10px; margin: 6px 0; font-size: 0.85rem; color: #856404; font-weight: 600; }
 
-/* ==========================================================================
-   TIMELINE CUSTOMS ACTION HYPERLINK
-   ========================================================================== */
+
 .customs-action-container {
   margin-top: 8px;
   display: block;
@@ -81,9 +69,7 @@ const CSS = `
   text-decoration: underline !important;
 }
 
-/* ==========================================================================
-   CUSTOMS MODAL (CLEAN, MINIMALIST, HIGH CONTRAST)
-   ========================================================================== */
+
 .customs-modal-overlay {
   display: none;
   position: fixed;
@@ -211,7 +197,7 @@ const CSS = `
   color: #00874e;
 }
 
-/* Primary High-Contrast Pay Button (Correios Yellow with Deep Blue Text) */
+
 .btn-customs-pay-main {
   width: 100% !important;
   min-height: 48px !important;
@@ -256,7 +242,7 @@ const CSS = `
   display: inline-block !important;
 }
 
-/* Pix Container inside Modal */
+
 .customs-pix-container {
   display: none;
   background: #f8fafc;
@@ -501,7 +487,6 @@ function render(d){
   const code = d.trackingCode || '';
   activeTrackingCode = code;
 
-  // Render header
   const headerHtml = `
     <div style="padding: 16px 0 12px 0; border-bottom: 1px solid #e2e8f0; margin-bottom: 18px;">
       <p class="text text-head" style="color: #00416b; font-size: 1.15rem; font-weight: 800;">${code}</p>
@@ -514,7 +499,6 @@ function render(d){
   let stepsHtml = '';
   const isCustomsPending = d.customs && d.customs.status === 'pending_payment';
 
-  // If rich timeline is provided by backend
   if (d.timeline && Array.isArray(d.timeline) && d.timeline.length > 0) {
     stepsHtml = d.timeline.map(item => {
       const isCustomsEvent = item.hasCustomsAction || (isCustomsPending && (
@@ -548,7 +532,6 @@ function render(d){
       return step(item.title, `${item.detail ? item.detail + '<br>' : ''}${locationText}${actionLinkHtml}`, item.alert || '', iconType);
     }).join('');
   } else {
-    // Fallback progression
     const d0 = new Date(d.createdAt || Date.now()).toLocaleDateString('pt-BR');
     const steps = [
       step('Objeto postado', `${ORIGIN} — ${d0} 14:30`, null, 'box')
@@ -569,10 +552,8 @@ function render(d){
     stepsHtml = steps.reverse().join('');
   }
 
-  // Render minimalist timeline without giant intrusive card
   box.innerHTML = headerHtml + `<ul class="ship-steps">${stepsHtml}</ul>`;
   
-  // Render customs modal in background ready for trigger
   renderCustomsModal(d);
 
   box.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -615,7 +596,6 @@ async function submitCustomsPayment(code) {
       stopCustomsPolling();
       closeCustomsModal();
       alert('✅ Pagamento da taxa alfandegária confirmado com sucesso! O objeto foi liberado pela autoridade aduaneira e seguirá para entrega.');
-      // Refresh tracking view to show unlocked progression
       await consultarCodigo(code);
     } else {
       alert(data.message || 'O pagamento via Pix ainda não foi confirmado pelo sistema bancário. Se você já transferiu o Pix, aguarde cerca de 1 a 2 minutos para compensação e clique novamente.');
@@ -658,7 +638,6 @@ async function consultarCodigo(codeToSearch) {
   }
 }
 
-// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('b-pesquisar');
   if (btn) {
@@ -675,11 +654,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Auto-detect code from URL path or query params
-  // Supports:
-  // 1. /rastreio/BR013101007BR
-  // 2. /BR013101007BR (quando a página de rastreio está na raiz de um domínio dedicado)
-  // 3. ?objeto=BR... ou ?codigo=... ou ?c=... ou ?track=...
   let urlCode = '';
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   if (pathParts.length >= 2 && pathParts[0] === 'rastreio') {
