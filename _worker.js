@@ -43,17 +43,21 @@ export default {
     }
 
     if (env.ASSETS) {
-      const cleanPath = url.pathname.replace(/\/+$/, '').toLowerCase();
-      if (cleanPath === '/como-funciona' || cleanPath === '/guia' || cleanPath === '/blog') {
-        return env.ASSETS.fetch(new Request(`${url.origin}/como-funciona.html`, request));
+      const pathname = url.pathname;
+
+      if (pathname === '/rastreio' || pathname === '/rastreio/' || pathname.startsWith('/rastreio/')) {
+        return env.ASSETS.fetch(new Request(`${url.origin}/rastreio.html${url.search}`, request));
       }
 
-      const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(url.pathname);
-      
-      if (!isStaticFile && url.pathname !== '/') {
-        const code = url.pathname.replace(/^\/?(rastreio\/)?/, '').replace(/\/+$/, '');
-        if (code) {
-          return Response.redirect(`${url.origin}/?codigo=${encodeURIComponent(code)}`, 302);
+      const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(pathname);
+      if (isStaticFile) {
+        return env.ASSETS.fetch(request);
+      }
+
+      if (pathname !== '/') {
+        const cleanCode = pathname.replace(/^\/+/, '').replace(/\/+$/, '');
+        if (/^[A-Z0-9]{8,25}$/i.test(cleanCode)) {
+          return Response.redirect(`${url.origin}/rastreio?codigo=${encodeURIComponent(cleanCode.toUpperCase())}`, 302);
         }
         return Response.redirect(`${url.origin}/`, 302);
       }
