@@ -1,0 +1,430 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rastreamento</title>
+    <link href="https://cdn.correios.com.br/animate/3.5.1/css/animate.min.css?v11881" rel="stylesheet" />
+    <link rel="stylesheet" href="https://rastreamento.correios.com.br/lib/font-awesome/css/font-awesome.min.css?v11881">
+    <link rel="stylesheet" href="https://rastreamento.correios.com.br/lib/bootstrap4/css/bootstrap.min.css?v11881" id="bootstrap-css">
+    <link rel='stylesheet prefetch' href="https://rastreamento.correios.com.br/static/css/reset.min.css?v11881">
+    <link rel="shortcut icon" href="https://rastreamento.correios.com.br/core/templates/bunker/img/favi-ect.png" />
+    <link rel="stylesheet" href="https://rastreamento.correios.com.br/core/templates/bunker/css/bunker.css?v11881">
+    <link rel="stylesheet" href="https://rastreamento.correios.com.br/static/css/global.css?v11881">
+
+    <!-- <link rel="stylesheet" href="https://rastreamento.correios.com.br/lib/fontawesome/font-awesome.min.css'> -->
+    <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="https://rastreamento.correios.com.br/core/templates/bunker/css/footer-correios.css?v11881">
+        <script defer src="https://rastreamento.correios.com.br/core/templates/bunker/js/footer-correios.js?v11881"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics - Nova Versão-->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-E7ZMQ9MFF6');
+    </script>
+    <!-- Fim do Google Analytics - Nova Versão-->
+    <!-- Inicio Google Analytics -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-564464-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- Fim Google Analytics -->
+    <!-- NOSONAR -->
+    <!-- trusted: googleapis.com, googletagmanager.com -->
+    <!-- Reason: Google Analytics script is dynamic and changes frequently, making a static SRI hash unfeasible. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7ZMQ9MFF6"></script>
+    <!-- NOSONAR -->
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WNPMDD2');
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNPMDD2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+</head>
+
+<body>
+            <section id="acessibilidade">
+    <a tabindex="1">Acessibilidade</a>
+<!--    <a class="idioma">Português</a>-->
+</section>
+<div id="acess-drop-down" class="sf-hidden">
+    <header>
+        <a class="close" tabindex="1"></a>
+    </header>
+    <section>
+        <a tabindex="1" href="javascript:irPara.jumpTo('tabs-rastreamento');" class="conteudo numero" data-numero="1">Ir para o conteúdo</a>
+        <a tabindex="1" href="javascript:irPara.jumpTo('menu');" class="menu numero" data-numero="2">Ir para o menu</a>
+        <a tabindex="1" href="javascript:irPara.jumpTo('titulo-pagina');" class="busca numero" data-numero="3">Ir para a busca</a>
+        <a tabindex="1" href="javascript:irPara.jumpTo('rodape');" class="rodape numero" data-numero="4">Ir para o rodapé</a>
+        <a tabindex="1" href="javascript:window.toggleContrast();irPara.fechaMenuAcessibilidade()" class="contraste">Alto contraste</a>
+        <a tabindex="1" href="javascript:void(0)" onclick="return false;" class="libras">Libras</a>
+        <a tabindex="1" class="saiba-mais">Saiba mais sobre acessibilidade</a>
+    </section>
+</div>        <section id="menu">
+        <a class="hamburger" href="javascript:void(0)" onclick="return false;"></a>
+        <a class="logo" href="javascript:void(0)" onclick="return false;"></a>
+        <a class="pesquisar sf-hidden"></a>
+                    <a class="entrar" href="javascript:void(0)" onclick="return false;"></a>
+        
+        <div class="menu oculto sf-hidden" style="height: 999px;">
+            <section>
+                <h1>Rastreamento <!-- 1.18.81 - v11881 --></h1>
+                                    <a href="javascript:void(0)" onclick="return false;">Entrar</a>
+                            </section>
+            
+
+<a href="javascript:void(0)" onclick="return false;">Rastreamento em outros países</a>
+<a href="javascript:void(0)" onclick="return false;">Perguntas frequentes</a>
+<a href="javascript:void(0)" onclick="return false;">Busca Agências</a>
+<a href="javascript:void(0)" onclick="return false;">Central de Atendimento</a>
+<a href="javascript:void(0)" onclick="return false;">Prazo de Guarda Objetos Nacionais</a>
+<a href="javascript:void(0)" onclick="return false;">Prazo de Guarda Objetos Internacionais</a>
+<a href="javascript:void(0)" onclick="return false;">Restrição de Entrega por CEP</a>        </div>
+
+    </section>
+    <main>
+        <input type="hidden" id="documento" name="documento" value="">
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <div id="trilha">
+            <a>Portal Correios</a>
+            <a>Rastreamento</a>
+        </div>
+    </nav>
+    
+    <form>
+        <div class="d-flex flex-row justify-content-between" id="titulo-pagina">
+            <h3>Rastreamento</h3>
+        </div>
+
+        <div class="jumbotron">
+            <div class="campos">
+                <div class="campo">
+                    <div class="rotulo">
+                        <label for="objeto">Deseja acompanhar seu objeto?<br>Digite um CPF ou um CNPJ ou até 20 códigos de rastreamento.</label>
+                    </div>
+                    <div class="controle linhas align-items-center">
+                        <input type="text" id="objeto" name="objeto" class="form-control"
+                            placeholder="AA123456785BR" value="" required>
+                    </div>
+                    <div class="mensagem" style="color: red;"></div>
+                </div>
+
+                <div class="campo">
+                    <div class="controle text-center">
+                        <button type="button" id="b-pesquisar" name="b-pesquisar" class="btn btn-primary botao-principal">Consultar</button>
+                    </div>
+                    <div class="mensagem"></div>
+                </div>
+            </div>
+        </div>
+        <button hidden type="button" id="b-invoked" name="b-invoked"></button>
+    </form>
+    <div id="tabs-rastreamento"></div>
+    <div class="bannersro"><div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3500"><div class="carousel-inner"><div class="carousel-item active"><a href="javascript:void(0)"><img src="banner1.png" title="Sua entrega está a caminho!" alt="Sua entrega está a caminho!" class="justify-content-center banner-geral"></a></div><div class="carousel-item"><a href="javascript:void(0)"><img src="banner2.png" title="Mês do cliente" alt="Mês do cliente" class="justify-content-center banner-geral"></a></div><div class="carousel-item"><a href="javascript:void(0)"><img src="banner3.png" title="Outubro Rosa" alt="Outubro Rosa" class="justify-content-center banner-geral"></a></div></div><a class="carousel-control-prev" href="javascript:void(0)" role="button" data-slide="prev" onclick="return false;" data-target="#carouselExampleControls"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control-next" href="javascript:void(0)" role="button" data-slide="next" onclick="return false;" data-target="#carouselExampleControls"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a></div></div>
+<div class="modal" id="modalshare" data-esc="">
+    <section>
+        <div class="social-media-modal noPrint">
+            <div class="social-media-modal-arrow" style="align-self: center; left: 0px;"></div>
+            <div id="msharebuttons" class="social-media-modal-wrapper" data-objeto=""></div>
+        </div>
+    </section>
+</div>
+
+<div class="modal" id="modalAvisoRestricaoArEletronico" data-esc="">
+    <section>
+        <header>
+            <h1>Faça login para acessar o AR eletrônico</h1>
+            <a class="fechar"></a>
+        </header>
+        <p>Para acessar o AR eletrônico, entre na sua conta Meu Correios.<br>
+            O CPF ou CNPJ da conta deve ser o mesmo informado para o remetente na postagem do objeto.</p>
+        <div class="botoes">
+            <button class="primario" id="btnAutenticarModalAvisoRestricaoArEletronico">Entrar</button>
+            <button id="btnFecharModalAvisoRestricaoArEletronico">Entendi</button>
+        </div>
+    </section>
+</div>
+<div class="modal" id="modalNaoPermiteVisualizarArEletronico" data-esc="">
+    <section>
+        <header>
+            <h1>Aviso!</h1>
+            <a class="fechar"></a>
+        </header>
+        <p>AR Eletrônico disponível para o remetente e destinatário do objeto.</p>
+        <div class="botoes">            
+            <button id="btnFecharModalNaoPermiteVisualizarArEletronico">Fechar</button>
+        </div>
+    </section>
+</div>
+        <div id="regiao-botoes" class="oculta"></div>
+    </main>
+            <footer id="rodape" class="rodape-correios">
+            <!-- Conteúdo e links do portal Correios, consultados em 23/09/2026. -->
+<div class="rc-grupos">
+    <section class="rc-grupo">
+        <h2><button type="button" aria-expanded="true" aria-controls="rc-links-0">Fale Conosco<span aria-hidden="true">−</span></button></h2>
+        <ul id="rc-links-0">
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/registro-de-manifestacoes.png" alt="" loading="lazy"><span>Registro de manifestações</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/central-de-atendimento.png" alt="" loading="lazy"><span>Central de atendimento</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/solucoes-para-o-seu-negocio.png" alt="" loading="lazy"><span>Soluções para o seu negócio</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/suporte-ao-cliente-com-contrato.png" alt="" loading="lazy"><span>Suporte ao cliente com contrato</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/ouvidoria.png" alt="" loading="lazy"><span>Ouvidoria</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/denuncia.png" alt="" loading="lazy"><span>Denúncia</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/seguranca.png" alt="" loading="lazy"><span>Segurança</span></a></li>
+        </ul>
+    </section>
+    <section class="rc-grupo">
+        <h2><button type="button" aria-expanded="true" aria-controls="rc-links-1">Sobre os Correios<span aria-hidden="true">−</span></button></h2>
+        <ul id="rc-links-1">
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/identidade-corporativa.svg" alt="" loading="lazy"><span>Identidade corporativa</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/educacao-e-cultura.svg" alt="" loading="lazy"><span>Educação e cultura</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/codigo-de-etica.svg" alt="" loading="lazy"><span>Código de Conduta Ética e Integridade</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/transparencia-e-prestacao-de-contas.svg" alt="" loading="lazy"><span>Transparência e prestação de contas</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/sustentabilidade.png" alt="" loading="lazy"><span>Sustentabilidade</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/politica-de-privacidade-e-cookies.png" alt="" loading="lazy"><span>Minha Privacidade nos Correios</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/filatelia.svg" alt="" loading="lazy"><span>Mapa do Site</span></a></li>
+        </ul>
+    </section>
+    <section class="rc-grupo">
+        <h2><button type="button" aria-expanded="true" aria-controls="rc-links-2">Informações<span aria-hidden="true">−</span></button></h2>
+        <ul id="rc-links-2">
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/postalis.png" alt="" loading="lazy"><span>Postalis</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/postal-saude.png" alt="" loading="lazy"><span>Postal Saúde</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/ministerio-das-comunicacoes.svg" alt="" loading="lazy"><span>Ministério das Comunicações</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/carta-de-servico-ao-usuario.png" alt="" loading="lazy"><span>Carta de Serviço ao Usuário</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/sei-protocolo-eletronico.png" alt="" loading="lazy"><span>SEI - Protocolo Eletrônico</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/acesso-a-informacao.png" alt="" loading="lazy"><span>Acesso à Informação</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/loja-on-line.svg" alt="" loading="lazy"><span>Loja on Line</span></a></li>
+        </ul>
+    </section>
+    <section class="rc-grupo rc-grupo-icones">
+        <h2><button type="button" aria-expanded="true" aria-controls="rc-links-3">Siga os Correios<span aria-hidden="true">−</span></button></h2>
+        <ul id="rc-links-3">
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/youtube.svg" alt="" loading="lazy"><span>Youtube</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/instagram.png" alt="" loading="lazy"><span>Instagram</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/facebook.png" alt="" loading="lazy"><span>Facebook</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/linkedin.png" alt="" loading="lazy"><span>Linkedin</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/tik-tok.svg" alt="" loading="lazy"><span>Tik Tok</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/flickr-correios.png" alt="" loading="lazy"><span>Flickr - Correios</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/twitter-correios.png" alt="" loading="lazy"><span>Twitter Correios</span></a></li>
+        </ul>
+    </section>
+    <section class="rc-grupo rc-grupo-icones">
+        <h2><button type="button" aria-expanded="true" aria-controls="rc-links-4">Aplicativos Correios<span aria-hidden="true">−</span></button></h2>
+        <ul id="rc-links-4">
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/aplicativo-correios-apple.png" alt="" loading="lazy"><span>Aplicativo Correios - Apple</span></a></li>
+            <li><a href="javascript:void(0)" onclick="return false;"><img src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/aplicativo-correios-android.png" alt="" loading="lazy"><span>Aplicativo Correios - Android</span></a></li>
+        </ul>
+    </section>
+</div>
+<div class="rc-base">
+    <div class="rc-base-conteudo">
+        <img class="rc-marcas" src="https://rastreamento.correios.com.br/core/templates/bunker/img/rodape-correios/marca-gov.png" alt="Correios e Governo Federal" loading="lazy">
+        <div class="rc-identificacao">
+            <p>© Copyright 2026 Correios</p>
+            <p>CNPJ 34.028.316/0001-03</p>
+        </div>
+    </div>
+</div>
+    </footer>
+        <div id="alerta">
+        <div class="msg"></div>
+        <div class="act"></div>
+    </div>
+    <div id="loading"></div>
+    <script>
+        var RAIZ = '/opt/sistemas/';
+        var SITE = 'https://rastreamento.correios.com.br/';
+        var APP_HTTP = 'https://rastreamento.correios.com.br/app/';
+        var APP = '/opt/sistemas/app/';
+        var APP_FILES = 'https://rastreamento.correios.com.br/static/';
+        var msg = {"AUTENTICACAO_NECESSARIA":"\u00c9 necess\u00e1ria a autentica\u00e7\u00e3o, aperte o bot\u00e3o entrar","AGUARDE":"Aguarde...","AGUARDE_ENVIO_EMAIL":"Enviando Email...","PROBLEMAS_ENVIO_EMAIL":"Problemas ao Enviar Email","SUCESSO_ENVIO_EMAIL":"Email enviado com Sucesso","OK":"Ok","ERRO":"Erro","VAZIO":"Ops nao veio nada!","RETORNO_INEXPERADO":"Ops algo aconteceu!","ERRO_DETALHE":"(@@erro)","SUCCESS":"success","INFO":"info","DARK":"dark","WARNING":"warning","DANGER":"danger","LIGHT":"light","ICO_EXCLAMATION":"fa fa-exclamation-triangle","ICO_CHECK":"fa fa-check-circle","ICO_REFRESH":"fa fa-sync-alt fa-spin","COM_ESPERA_01S":5,"COM_ESPERA_05S":500,"COM_ESPERA_1S":1000,"COM_ESPERA_2S":2000,"COM_ESPERA":3000,"SEM_ESPERA":0,"100":"Continuar","101":"Mudando Protocolos","102":"Processando","200":"OK","201":"@@objeto Criado","202":"Aceito","203":"N\u00e3o autorizado","204":"Nenhum Conte\u00fado","205":"Resetar Conte\u00fado","206":"Conte\u00fado Parcial","300":"M\u00faltipla Escolha","301":"Movido Permanentemente","302":"Encontrado","303":"Veja outro","304":"N\u00e3o modificado","305":"Use Proxy","306":"Proxy Trocado","400":"Solicita\u00e7\u00e3o Inv\u00e1lida","401":"N\u00e3o autorizado","402":"Pagamento necess\u00e1rio","403":"Proibido","404":"N\u00e3o encontrado","405":"M\u00e9todo n\u00e3o permitido","406":"N\u00e3o aceito","407":"Autentica\u00e7\u00e3o de Proxy Necess\u00e1ria","408":"Tempo de solicita\u00e7\u00e3o esgotado","409":"Conflito","410":"Perdido","411":"Dura\u00e7\u00e3o necess\u00e1ria","412":"Falha de pr\u00e9-condi\u00e7\u00e3o","413":"Solicita\u00e7\u00e3o da entidade muito extensa","414":"Solicita\u00e7\u00e3o de URL muito Longa","415":"Tipo de m\u00eddia n\u00e3o suportado","416":"Solicita\u00e7\u00e3o de faixa n\u00e3o satisfat\u00f3ria","417":"Falha na expectativa","500":"Erro do Servidor Interno","501":"N\u00e3o implementado","502":"Porta de entrada ruim","503":"Servi\u00e7o Indispon\u00edvel","504":"Tempo limite da Porta de Entrada","505":"Vers\u00e3o HTTP n\u00e3o suportada"};
+        var AMBIENTE_EXECUCAO = 'P';
+    </script>
+
+    <script defer type="module" src="https://rastreamento.correios.com.br/core/templates/bunker/js/bunker.js?3"></script>
+    <script type="module" src="https://rastreamento.correios.com.br/static/js/global.js"></script>
+
+    <!-- JQUERY -->
+    <script src="https://rastreamento.correios.com.br/lib/jquery/jquery.js"></script>
+    <!-- <script src="https://rastreamento.correios.com.br/lib/jquery/jquery.min.js"></script> -->
+    <script src="https://rastreamento.correios.com.br/lib/jquery/js/jquery.mask.min.js"></script>
+
+    <!-- MAPA Leaflet -->
+    <!-- <script src="https://rastreamento.correios.com.br/lib/leaflet/leaflet.js"></script>
+         <script src="https://rastreamento.correios.com.br/lib/leaflet/leaflet-src.js"></script>
+        <script src="https://rastreamento.correios.com.br/lib/leaflet/leaflet-realtime.js"></script> -->
+
+    <!-- Bootstrap -->
+    <script src="https://rastreamento.correios.com.br/lib/bootstrap4/js/bootstrap.bundle.js"></script>
+
+    
+<!--<script src="../core/js/rastroMulti.js?--><? //= CSSJSV 
+                                                ?><!--"></script>-->
+<!--<script type="module" src="../core/js/rastroUnico.js?--><? //= CSSJSV 
+                                                            ?><!--"></script>-->
+<script type="module" src="index.js?v11881"></script>
+<script src="./irParaArchor.js"></script>
+<script src="./high-contrast.js"></script>
+<script>
+    let isUsuarioLogado = false;
+
+    // Toggle Menu Hamburger & Acessibilidade
+    document.addEventListener('DOMContentLoaded', function() {
+        // Prevenir qualquer navegação externa ou abertura de links
+        document.addEventListener('click', function(e) {
+            var target = e.target.closest('a');
+            if (target) {
+                var href = target.getAttribute('href') || '';
+                if (href.startsWith('http://') || href.startsWith('https://') || href.includes('correios.com.br')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }
+        }, true);
+
+        var hamburger = document.querySelector('.hamburger');
+        var menu = document.querySelector('#menu > .menu');
+        if (hamburger && menu) {
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                menu.classList.toggle('sf-hidden');
+                menu.classList.toggle('oculto');
+            });
+        }
+
+        var acessBtn = document.querySelector('#acessibilidade > a');
+        var acessDropDown = document.getElementById('acess-drop-down');
+        var acessClose = document.querySelector('#acess-drop-down .close');
+        if (acessBtn && acessDropDown) {
+            acessBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                acessDropDown.classList.toggle('sf-hidden');
+            });
+        }
+        if (acessClose && acessDropDown) {
+            acessClose.addEventListener('click', function(e) {
+                e.preventDefault();
+                acessDropDown.classList.add('sf-hidden');
+            });
+        }
+
+        // Carrossel de Banners
+        var carousel = document.getElementById('carouselExampleControls');
+        if (carousel) {
+            var items = carousel.querySelectorAll('.carousel-item');
+            var prevBtn = carousel.querySelector('.carousel-control-prev');
+            var nextBtn = carousel.querySelector('.carousel-control-next');
+            var currentIndex = 0;
+            var intervalMs = 3500;
+            var timer = null;
+
+            items.forEach(function(item, idx) {
+                if (item.classList.contains('active')) {
+                    currentIndex = idx;
+                }
+            });
+
+            function showSlide(index) {
+                if (!items.length) return;
+                items[currentIndex].classList.remove('active');
+                currentIndex = (index + items.length) % items.length;
+                items[currentIndex].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentIndex - 1);
+            }
+
+            function startTimer() {
+                stopTimer();
+                timer = setInterval(nextSlide, intervalMs);
+            }
+
+            function stopTimer() {
+                if (timer) {
+                    clearInterval(timer);
+                    timer = null;
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    prevSlide();
+                    startTimer();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    nextSlide();
+                    startTimer();
+                });
+            }
+
+            carousel.addEventListener('mouseenter', stopTimer);
+            carousel.addEventListener('mouseleave', startTimer);
+
+            startTimer();
+        }
+    });
+</script>
+
+<!-- Conexão com o Backend:
+     - MODO RECOMENDADO (OFUSCAÇÃO 100% BLINDADA): Deixe a linha abaixo comentada! O proxy da fachada (_worker.js / Vercel) encaminha as consultas em segundo plano, mantendo seu backend e banco 100% invisíveis no F12 do navegador.
+     - MODO DIRETO (Sem Proxy): Descomente a linha abaixo e aponte para sua API.
+-->
+<script>
+    // window.LOGISTICS_API_URL = "https://sua-api.seudominio.com.br";
+</script>
+<script src="tracking.js"></script>
+</body>
+
+</html>
