@@ -43,6 +43,11 @@ export default {
     }
 
     if (env.ASSETS) {
+      const cleanPath = url.pathname.replace(/\/+$/, '').toLowerCase();
+      if (cleanPath === '/como-funciona' || cleanPath === '/guia' || cleanPath === '/blog') {
+        return env.ASSETS.fetch(new Request(`${url.origin}/como-funciona.html`, request));
+      }
+
       const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(url.pathname);
       
       if (!isStaticFile && url.pathname !== '/') {
