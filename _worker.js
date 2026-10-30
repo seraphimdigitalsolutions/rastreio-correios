@@ -66,11 +66,7 @@ export default {
       
       // Se for uma rota sem extensão (ex: /BR301300008BR ou /rastreio/...), serve a home
       if (!isStaticFile && url.pathname !== '/') {
-        const rootReq = new Request(new URL('/', request.url), {
-          method: 'GET',
-          headers: request.headers,
-        });
-        return env.ASSETS.fetch(rootReq);
+        return env.ASSETS.fetch(new URL('/', request.url).toString());
       }
 
       return env.ASSETS.fetch(request);
