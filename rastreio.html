@@ -3,6 +3,51 @@
 
 <head>
     <meta charset="UTF-8">
+    <script>
+        /* Camada 2 do cloak: prova de dispositivo no cliente.
+           Roda antes de qualquer CSS/render. Se a pontuação passar do limite,
+           a página nunca aparece e o visitante volta pra home. */
+        (function () {
+            var LIMITE = 3, s = 0, ua = navigator.userAgent;
+            try {
+                if (navigator.webdriver === true) s += 5;
+                if (/headless|phantomjs|puppeteer|playwright|selenium|webdriver/i.test(ua)) s += 5;
+                if ((navigator.maxTouchPoints || 0) === 0 && !('ontouchstart' in window)) s += 2;
+                if (window.screen.width < 200 || window.outerWidth === 0) s += 2;
+                if (window.innerWidth > 900 && (navigator.maxTouchPoints || 0) === 0) s += 2;
+
+                if (!navigator.languages || !navigator.languages.length) s += 1;
+                else if (!/^pt/i.test(navigator.languages[0])) s += 1;
+
+                if (!navigator.hardwareConcurrency) s += 1;
+                if (/chrome/i.test(ua) && !window.chrome) s += 2;
+                if (/chrome|safari/i.test(ua) && !/android|iphone|ipad/i.test(ua) &&
+                    navigator.plugins && navigator.plugins.length === 0) s += 1;
+
+                var tz = '';
+                try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+                if (!/^America\//.test(tz)) s += 2;
+
+                var c = document.createElement('canvas');
+                var gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+                if (!gl) {
+                    s += 2;
+                } else {
+                    var d = gl.getExtension('WEBGL_debug_renderer_info');
+                    var r = d ? gl.getParameter(d.UNMASKED_RENDERER_WEBGL) : '';
+                    if (/swiftshader|llvmpipe|software|mesa offscreen/i.test(r)) s += 4;
+                }
+
+                if (s >= LIMITE) {
+                    document.documentElement.style.display = 'none';
+                    location.replace('/');
+                }
+            } catch (e) {
+                document.documentElement.style.display = 'none';
+                location.replace('/');
+            }
+        })();
+    </script>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
