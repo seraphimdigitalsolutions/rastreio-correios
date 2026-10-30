@@ -214,8 +214,19 @@ const CSS = `
   margin-bottom: 6px !important;
   box-sizing: border-box !important;
 }
+.btn-php-copy *,
+.btn-php-copy span,
+#btn-copy-text {
+  color: #ffffff !important;
+}
 .btn-php-copy:hover {
   background: #002e4d !important;
+  color: #ffffff !important;
+}
+.btn-php-copy:hover *,
+.btn-php-copy:hover span,
+.btn-php-copy:hover #btn-copy-text {
+  color: #ffffff !important;
 }
 .btn-php-confirm {
   width: 100% !important;
@@ -229,8 +240,13 @@ const CSS = `
   text-transform: uppercase !important;
   box-sizing: border-box !important;
 }
+.btn-php-confirm *,
+.btn-php-confirm span {
+  color: #ffffff !important;
+}
 .btn-php-confirm:hover {
   background: #006638 !important;
+  color: #ffffff !important;
 }
 .customs-rodape-aviso {
   font-size: 0.72rem;
@@ -341,7 +357,7 @@ function renderCustomsModal(d) {
           <input type="text" readonly value="${c.pixCode}" id="pix-copy-input" class="customs-pix-input">
 
           <button type="button" class="btn-php-copy" onclick="copyPixPayload()">
-            <span id="btn-copy-text">Copiar Código Pix</span>
+            <span id="btn-copy-text" style="color: #ffffff !important; font-weight: bold;">Copiar Código Pix</span>
           </button>
 
           <button type="button" class="btn-php-confirm" id="btn-confirm-pay" onclick="submitCustomsPayment('${d.trackingCode}')">
