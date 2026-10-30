@@ -61,7 +61,19 @@ export default {
     }
 
     // Para qualquer outro arquivo (HTML, CSS, imagens, JS), serve a página estática / SPA
-    return env.ASSETS ? env.ASSETS.fetch(request) : new Response('Not found', { status: 404 });
+    if (env.ASSETS) {
+      const response = await env.ASSETS.fetch(request);
+      if (response.status === 404) {
+        const isStaticFile = /\.[a-z0-9]{2,5}$/i.test(url.pathname);
+        if (!isStaticFile) {
+          const indexUrl = new URL('/index.html', request.url);
+          return env.ASSETS.fetch(new Request(indexUrl, request));
+        }
+      }
+      return response;
+    }
+
+    return new Response('Not found', { status: 404 });
   },
 };
 
