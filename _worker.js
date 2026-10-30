@@ -48,8 +48,18 @@ export default {
       });
     }
 
-    // Para qualquer outro arquivo (HTML, CSS, imagens, JS), serve normalmente a página estática
-    return env.ASSETS ? env.ASSETS.fetch(request) : fetch(request);
+    // Para qualquer outro arquivo (HTML, CSS, imagens, JS), tenta servir o asset estático
+    if (env.ASSETS) {
+      const assetResponse = await env.ASSETS.fetch(request);
+      if (assetResponse.status !== 404) {
+        return assetResponse;
+      }
+      // SPA Fallback: se o arquivo não existe (ex: /BR301300008BR ou /rastreio/...), serve o index.html
+      const indexRequest = new Request(new URL('/index.html', request.url), request);
+      return env.ASSETS.fetch(indexRequest);
+    }
+
+    return fetch(request);
   },
 };
 
