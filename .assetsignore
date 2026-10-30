@@ -1,0 +1,8 @@
+_worker.js
+api-proxy.php
+api/
+vercel.json
+.git
+.gitignore
+.DS_Store
+wrangler.json
