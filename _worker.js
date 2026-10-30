@@ -16,6 +16,18 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // Preflight CORS
+    if (request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+        },
+      });
+    }
+
     // Se a requisição for para a API de rastreio, encaminha em segundo plano para o backend secreto
     if (url.pathname.startsWith('/api/tracking')) {
       const backendBaseUrl = (env.BACKEND_API_URL || 'https://jetlogs.shop').replace(/\/+$/, '');
