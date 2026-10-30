@@ -72,9 +72,16 @@ body {
     height: var(--altura-menu);
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background: #ffffff !important;
+    background-image: none !important;
     border-bottom: 3px solid var(--cor-amarelo-correios);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+#menu .hamburger {
+    flex: 0 0 2rem;
+    z-index: 2;
 }
 
 #menu .container {
@@ -107,11 +114,24 @@ body {
     display: block;
     width: 140px;
     height: 34px;
-    background-image: var(--sf-img-6);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+    background-image: var(--sf-img-6) !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    background-position: center !important;
     text-indent: -9999px;
+}
+
+@media (max-width: 1023px) {
+    #menu {
+        background-image: none !important;
+    }
+    #menu .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 1;
+    }
 }
 
 .pesquisar, .entrar {

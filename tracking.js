@@ -14,6 +14,22 @@ const ICONS = {
 };
 
 const CSS = `
+#menu {
+  background: #ffffff !important;
+  background-image: none !important;
+}
+@media (max-width: 1023px) {
+  #menu {
+    background-image: none !important;
+  }
+  #menu .logo {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+    z-index: 1 !important;
+  }
+}
 .ship-steps { list-style: none; margin: 0; padding: 0; border-left: none !important; margin-left: 20px; }
 .ship-steps .step { display: flex; padding-bottom: 0px; position: relative; }
 .step-content { margin-left: 30px; padding-bottom: 20px; }
